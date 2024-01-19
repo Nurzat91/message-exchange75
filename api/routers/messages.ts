@@ -1,10 +1,11 @@
 import {Router} from 'express';
+import {Messages} from "../types";
 
 const messagesRouter = Router();
 const Vigenere = require('caesar-salad').Vigenere;
 
 messagesRouter.post('/encode', (req, res) => {
-  const { password, message } = req.body;
+  const { password, message }: Messages = req.body;
 
   if (!password || !message) {
     return res.status(400).json({ error: 'Enter both the password and the message.' });
@@ -15,7 +16,7 @@ messagesRouter.post('/encode', (req, res) => {
 });
 
 messagesRouter.post('/decode', (req, res) => {
-  const { password, message } = req.body;
+  const { password, message }: Messages = req.body;
 
   if (!password || !message) {
     return res.status(400).json({ error: 'Enter both the password and the message.' });
